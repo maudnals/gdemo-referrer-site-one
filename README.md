@@ -2,7 +2,7 @@
 
 ## Demo flow
 
-- Navigate to [this URL][url].
+Refer to the explainer in the app.
 
 ## Developer setup
 
@@ -32,5 +32,3 @@ Click `Show` in the header to see your app live. Updates to your code will insta
 Find out more [about Glitch](https://glitch.com/about).
 
 ( ᵔ ᴥ ᵔ )
-
-[url]: https://site-one.glitch.me/stuff/detail?tag=blue
