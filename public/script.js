@@ -5,7 +5,7 @@ const sameOriginUrl = '/other'
 const urls = [crossOriginHttpsUrl, sameOriginUrl]
 
 // policies
-const nrwd = 'no-referrer'
+const nrwd = 'no-referrer-when-downgrade'
 const sowco = 'strict-origin-when-cross-origin'
 const other = 'other'
 const policyKeyToPolicyValue = {
