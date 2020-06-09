@@ -1,0 +1,137 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+<!DOCTYPE html>
+<html lang="en">
+  <head id="head">
+    <meta charset="utf-8" />
+    <title>1️⃣ site-one (referrer sandbox)</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A referrer sandbox made with Glitch" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <h1>1️⃣ site-one (Referrer sandbox)</h1>
+    <div class="text-xs">
+      🔷What this demo does:
+      <br />Demos the behaviour of two referrer specific referrer policies and
+      of your browser's default referrer policy.
+      <br />
+      🔷How to use it:
+      <ul>
+        <li>
+          Do nothing and observe the behaviour when your browser's
+          <b>default referrer policy</b> is used;
+        </li>
+        <li>
+          Then select another policy with the buttons below and observe the
+          behaviour;
+        </li>
+        <li>
+          <img
+            src="https://cdn.glitch.com/df49adee-d54f-4092-afc3-fbf6b5fe530c%2Fchrome-logo-s.png?1591277377304"
+            alt="chrome logo"
+            width="12"
+          />
+          Are you in Chrome? If so: you can experiment with another
+          <b>default referrer policy</b>. Enable the flag at
+          <b class="flag">chrome://flags/#reduced-referrer-granularity</b>.
+        </li>
+      </ul>
+    </div>
+    <h2>Your browser's default referrer policy</h2>
+    Detected <b>default</b> referrer policy in this browser:
+    <div id="detected-policy" class="async policy">...</div>
+    <h2>Pick a referrer policy</h2>
+    <div class="btn-group-policy">
+      <button value="0" class="selected" onclick="switchPolicy(event)">
+        no policy set: browser default is used 👆
+      </button>
+      <button value="1" onclick="switchPolicy(event)">
+        <div class="policy">no-referrer-when-downgrade</div>
+      </button>
+      <button value="2" onclick="switchPolicy(event)">
+        <div class="policy">strict-origin-when-cross-origin</div>
+      </button>
+    </div>
+    <h2>Let's <span class="code">fetch</span> stuff</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Request from
+
+            <div class="url">
+              https://site-one.glitch.me/<span class="nok"
+                >stuff/detail?tag=blue</span
+              >
+            </div>
+            <br />
+            to...
+          </th>
+          <th>
+            What was sent in the Referer header?
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="url">https://site-one.glitch.me/other</div>
+            <span class="description">same-origin</span>
+          </td>
+          <td>
+            <div class="url async" id="same-origin">...</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="url">https://site-two.glitch.me/</div>
+            <span class="description">cross-origin no downgrade</span>
+          </td>
+          <td>
+            <div class="url async" id="cross-origin-no-downgrade">...</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="url">http://site-two.glitch.me/</div>
+            <div class="description-wrapper">
+              <span class="description">cross-origin with downgrade</span>
+            </div>
+          </td>
+          <td>
+            <div class="url async">
+              [BLOCKED because mixed content]
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>Let's embed a cross-origin HTTPS <span class="code">iframe</span></h2>
+    iframe src = "https://site-two.glitch.me/ifr"
+    <div id="iframeWrapper"></div>
+    <h2>Let's embed a cross-origin image</h2>
+    <div id="imageWrapper"></div>
+    Check DevTools > network > image request > "referer".
+    <footer>
+      <p>
+        <a
+          href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/aBtuQUga1Tk/n4BLwof4DgAJ"
+          >chromium intent to implement</a
+        >
+      </p>
+      <p>
+        Ping <a href="https://twitter.com/maudnals">@maudnals</a>
+        for issues / questions with this sandbox.
+      </p>
+      <p>
+        You can
+        <a href="https://glitch.com/edit/#!/site-one"
+          >💻 access the code on Glitch.</a
+        >
+      </p>
+    </footer>
+    <script src="/script.js" defer></script>
+  </body>
+</html>
