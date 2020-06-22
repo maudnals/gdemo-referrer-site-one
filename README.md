@@ -1,4 +1,4 @@
-# Referrer Sandbox v1
+# Referrer Demo v1
 
 ## Demo flow
 
@@ -24,8 +24,6 @@ On the back-end,
 - safely store app secrets in `.env` (nobody can see this but you and people you invite)
 
 Click `Show` in the header to see your app live. Updates to your code will instantly deploy.
-
-
 
 // https://expressjs.com/en/starter/static-files.html
 // https://expressjs.com/en/starter/basic-routing.html
