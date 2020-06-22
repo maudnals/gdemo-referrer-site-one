@@ -1,7 +1,7 @@
 // request URLs
 const crossOriginHttpsUrl = 'https://site-two.glitch.me/ref'
 const crossOriginHttpsUrlIframe = 'https://site-two.glitch.me/ifr'
-const sameOriginUrl = '/other'
+const sameOriginUrl = '/ref'
 const urls = [crossOriginHttpsUrl, sameOriginUrl]
 
 // policies

@@ -12,7 +12,7 @@ const app = express()
 // make all the files in 'public' available
 app.use(express.static('public'))
 
-app.get('/other', function (req, res) {
+app.get('/ref', function (req, res) {
   const referer = req.get('Referer')
   res.send(referer)
 })
