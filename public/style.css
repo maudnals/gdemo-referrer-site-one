@@ -17,6 +17,10 @@ a:visited {
   color: var(--color-primary);
 }
 
+* {
+  outline: none;
+}
+
 h1 {
   font-size: 1.2em;
 }
