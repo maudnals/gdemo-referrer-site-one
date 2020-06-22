@@ -1,0 +1,5 @@
+service: site-one
+runtime: nodejs
+env: flex
+automatic_scaling:
+  min_num_instances: 1
