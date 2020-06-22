@@ -1,8 +1,9 @@
 // request URLs
-const crossOriginHttpsUrl = 'https://site-two.glitch.me/ref'
-const crossOriginHttpsUrlIframe = 'https://site-two.glitch.me/ifr'
+const siteTwo = "https://site-two-dot-referrer-demo-280711.ey.r.appspot.com"
+const crossOriginHttpsUrl = `${siteTwo}/ref`
+const crossOriginHttpsUrlIframe = `${siteTwo}/ifr`
 const sameOriginUrl = '/ref'
-const urls = [crossOriginHttpsUrl, sameOriginUrl]
+const urlsToFetch = [crossOriginHttpsUrl, sameOriginUrl]
 
 // policies
 const nrwd = 'no-referrer-when-downgrade'
@@ -101,7 +102,7 @@ function createImage() {
 }
 
 async function getAndDisplayAllFetchReferrers(policy) {
-  urls.forEach(async (url) => {
+  urlsToFetch.forEach(async (url) => {
     const referrerResponse = await fetch(url)
     const referrer = await referrerResponse.text()
     displayReferrer(url, referrer)
