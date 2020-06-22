@@ -140,8 +140,8 @@ function displayAsLoading() {
 
 function displayReferrer(url, referrer) {
   const formattedReferrer = referrer.replace(
-    /stuff\/detail\?tag=blue/g,
-    '<span class="nok">stuff/detail?tag=blue</span>'
+    /stuff\/detail\?tag=red/g,
+    '<span class="nok">stuff/detail?tag=red</span>'
   )
   elementsByUrlMap[url].innerHTML = formattedReferrer
 }
