@@ -1,5 +1,5 @@
 // request URLs
-const siteTwo = "https://site-two-dot-referrer-demo-280711.ey.r.appspot.com"
+const siteTwo = 'https://site-two-dot-referrer-demo-280711.ey.r.appspot.com'
 const crossOriginHttpsUrl = `${siteTwo}/ref`
 const crossOriginHttpsUrlIframe = `${siteTwo}/ifr`
 const sameOriginUrl = '/ref'
@@ -9,10 +9,15 @@ const urlsToFetch = [crossOriginHttpsUrl, sameOriginUrl]
 const nrwd = 'no-referrer-when-downgrade'
 const sowco = 'strict-origin-when-cross-origin'
 const other = 'other'
-const policyKeyToPolicyValue = {
+const policyIdToName = {
   '0': null,
   '1': nrwd,
   '2': sowco
+}
+const policyNameToId = {
+  null: '0',
+  [`${nrwd}`]: '1',
+  [`${sowco}`]: '2'
 }
 
 // DOM elements and mapping
@@ -41,6 +46,19 @@ function main() {
       displayPolicy(policy)
     })
 
+  let params = new URL(document.location).searchParams
+  let policy = params.get('p')
+  styleButtons(policy)
+  console.log('policy', policy)
+  // const policy = window.location
+  if (policy) {
+    const newReferrerPolicyMeta = document.createElement('meta')
+    newReferrerPolicyMeta.setAttribute('name', 'referrer')
+    newReferrerPolicyMeta.setAttribute('content', policy)
+    newReferrerPolicyMeta.setAttribute('id', 'referrer-policy-meta')
+    head.appendChild(newReferrerPolicyMeta)
+  }
+
   getAndDisplayAllFetchReferrers()
   createIframe()
   createImage()
@@ -63,30 +81,17 @@ function inferPolicyXsHttps(referrer) {
 
 function switchPolicy(event) {
   const selectedButton = event.currentTarget
-  styleButtons(selectedButton)
   displayAsLoading()
   const policyKey = selectedButton.value
-  const policy = policyKeyToPolicyValue[policyKey]
-  const referrerPolicyMeta = document.getElementById('referrer-policy-meta')
-  // remove the tag alltogether
-  if (referrerPolicyMeta) {
-    referrerPolicyMeta.remove()
-  }
-  // recreate it on the fly if a policy is selected - otherwise, do nothing (no tag)
+  const policy = policyIdToName[policyKey]
+
+  const searchParams = new URLSearchParams(window.location.search)
   if (policy) {
-    const newReferrerPolicyMeta = document.createElement('meta')
-    newReferrerPolicyMeta.setAttribute('name', 'referrer')
-    newReferrerPolicyMeta.setAttribute('content', policy)
-    newReferrerPolicyMeta.setAttribute('id', 'referrer-policy-meta')
-    head.appendChild(newReferrerPolicyMeta)
+    searchParams.set('p', policy)
+  } else {
+    searchParams.delete('p')
   }
-  console.log(
-    'referrer-policy meta tag:',
-    document.getElementById('referrer-policy-meta')
-  )
-  getAndDisplayAllFetchReferrers(policy)
-  createIframe(policy)
-  createImage()
+  window.location.search = searchParams.toString()
 }
 
 function createImage() {
@@ -128,9 +133,14 @@ function displayPolicy(policy) {
   policyEl.innerHTML = policy
 }
 
-function styleButtons(buttonToSelect) {
+function styleButtons(policyName) {
+  const policyId = policyNameToId[policyName]
   buttonsEls.forEach((btn) => (btn.className = ''))
-  buttonToSelect.className = 'selected'
+  console.log(buttonsEls[0])
+  // to transform the NodeList into a map
+  const buttonToSelect = [...buttonsEls].filter((b) => b.value === policyId)
+  console.log(buttonToSelect)
+  buttonToSelect[0].className = 'selected'
 }
 
 function displayAsLoading() {
