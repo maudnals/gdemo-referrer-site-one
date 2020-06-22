@@ -48,13 +48,13 @@
     <div id="detected-policy" class="async policy">...</div>
     <h2>Pick a referrer policy</h2>
     <div class="btn-group-policy">
-      <button value="0" class="selected" onclick="switchPolicy(event)">
+      <button value="p0" class="selected" onclick="switchPolicy(event)">
         no policy set: browser default is used 👆
       </button>
-      <button value="1" onclick="switchPolicy(event)">
+      <button value="p1" onclick="switchPolicy(event)">
         <div class="policy">no-referrer-when-downgrade</div>
       </button>
-      <button value="2" onclick="switchPolicy(event)">
+      <button value="p2" onclick="switchPolicy(event)">
         <div class="policy">strict-origin-when-cross-origin</div>
       </button>
     </div>
@@ -63,15 +63,7 @@
       <thead>
         <tr>
           <th>
-            Request from
-
-            <div class="url">
-              https://site-one.glitch.me/<span class="nok"
-                >stuff/detail?tag=red</span
-              >
-            </div>
-            <br />
-            to...
+            Request to...
           </th>
           <th>
             What was sent in the Referer header?
@@ -81,7 +73,7 @@
       <tbody>
         <tr>
           <td>
-            <div class="url">https://site-one.glitch.me/other</div>
+            <div>the same origin</div>
             <span class="description">same-origin</span>
           </td>
           <td>
@@ -90,7 +82,7 @@
         </tr>
         <tr>
           <td>
-            <div class="url">https://site-two.glitch.me/</div>
+            <div>another HTTPS origin</div>
             <span class="description">cross-origin no downgrade</span>
           </td>
           <td>
@@ -99,7 +91,7 @@
         </tr>
         <tr>
           <td>
-            <div class="url">http://site-two.glitch.me/</div>
+            <div>an HTTP origin</div>
             <div class="description-wrapper">
               <span class="description">cross-origin with downgrade</span>
             </div>
@@ -113,7 +105,6 @@
       </tbody>
     </table>
     <h2>Let's embed a cross-origin HTTPS <span class="code">iframe</span></h2>
-    iframe src = "https://site-two.glitch.me/ifr"
     <div id="iframeWrapper"></div>
     <h2>Let's embed a cross-origin image</h2>
     <div id="imageWrapper"></div>
