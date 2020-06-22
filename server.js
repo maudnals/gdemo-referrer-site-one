@@ -7,13 +7,11 @@ const app = express()
 // use a view engine for convenience
 // so I can display server-collected info (= the referer in that case) in the HTML markup
 // http://expressjs.com/en/guide/using-template-engines.html
-app.set('view engine', 'pug')
+// app.set('view engine', 'pug')
 
 // make all the files in 'public' available
-// https://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'))
 
-// https://expressjs.com/en/starter/basic-routing.html
 app.get('/other', function (req, res) {
   const referer = req.get('Referer')
   res.send(referer)
