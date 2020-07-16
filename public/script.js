@@ -8,32 +8,25 @@ const urlsToFetch = [crossOriginHttpsUrl, sameOriginUrl]
 // policies
 const nrwd = 'no-referrer-when-downgrade'
 const sowco = 'strict-origin-when-cross-origin'
-const other = 'other'
 const policyIdToName = {
   p0: null,
   p1: nrwd,
   p2: sowco
 }
-const policyNameToId = {
-  null: '0',
-  [`${nrwd}`]: 'p1',
-  [`${sowco}`]: 'p2'
-}
 
 // DOM elements and mapping
+const image = document.getElementById('img')
+const head = document.getElementById('head')
 const policyEl = document.getElementById('detected-policy')
-const buttonsEls = document.querySelectorAll('button')
-const referrerValueElCross = document.getElementById(
-  'cross-origin-no-downgrade'
-)
+const buttonEls = document.querySelectorAll('button')
+const requestTypeXEl = document.getElementById('cross-origin-no-downgrade')
+const requestTypeSameEl = document.getElementById('same-origin')
 const iframeWrapperEl = document.getElementById('iframeWrapper')
 const imageWrapperEl = document.getElementById('imageWrapper')
-const referrerValueElSame = document.getElementById('same-origin')
 const elementsByUrlMap = {
-  [crossOriginHttpsUrl]: referrerValueElCross,
-  [sameOriginUrl]: referrerValueElSame
+  [crossOriginHttpsUrl]: requestTypeXEl,
+  [sameOriginUrl]: requestTypeSameEl
 }
-const head = document.getElementById('head')
 
 main()
 
@@ -42,7 +35,7 @@ function main() {
   fetch(crossOriginHttpsUrl)
     .then((referrer) => referrer.text())
     .then((referrer) => {
-      const policy = inferPolicyXsHttps(referrer)
+      const policy = inferChromeDefaultPolicy(referrer)
       displayPolicy(policy)
     })
 
@@ -66,17 +59,15 @@ function main() {
 
 // Referrer utils
 
-function inferPolicyXsHttps(referrer) {
+function inferChromeDefaultPolicy(referrer) {
   const origin = window.location.origin
-  const full = window.location.href
+  const fullUrl = window.location.href
   if (referrer === origin || referrer === `${origin}/`) {
-    // OR: origin, origin-when-cross-origin, strict-origin, unsafe-url
     return sowco
-  } else if (referrer === full) {
-    // OR origin-when-cross-origin
+  } else if (referrer === fullUrl) {
     return nrwd
   }
-  return other
+  return '?'
 }
 
 function switchPolicy(event) {
@@ -93,11 +84,11 @@ function switchPolicy(event) {
 }
 
 function createImage() {
-  const image = document.getElementById('img')
   if (image) {
     image.remove()
   }
   const newImage = document.createElement('img')
+  // new date and time: hack to re-trigger the request
   newImage.src = `https://i.imgur.com/XArLydn.jpg?dummy=${new Date().getTime()}`
   newImage.id = 'img'
   newImage.width = 60
@@ -112,7 +103,7 @@ async function getAndDisplayAllFetchReferrers(policyId) {
   })
 }
 
-function createIframe(policy) {
+function createIframe() {
   const newIframe = document.createElement('iframe')
   newIframe.id = 'iframe'
   newIframe.src = crossOriginHttpsUrlIframe
@@ -132,10 +123,10 @@ function displayPolicy(policy) {
 }
 
 function styleButtons(policyId) {
-  buttonsEls.forEach((btn) => (btn.className = ''))
+  buttonEls.forEach((btn) => (btn.className = ''))
   // [...] to transform the NodeList into a map
-  const buttonToSelect = [...buttonsEls].filter((b) => b.value === policyId)
-  buttonToSelect[0].className = 'selected'
+  const buttonToSelect = [...buttonEls].find((btn) => btn.value === policyId)
+  buttonToSelect.className = 'selected'
 }
 
 function displayAsLoading() {
