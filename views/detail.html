@@ -1,5 +1,3 @@
-<!-- This is a static file -->
-<!-- served from your routes in server.js -->
 <!DOCTYPE html>
 <html lang="en">
   <head id="head">
@@ -17,7 +15,7 @@
       <div>
         🔷What this demo does:
         <ul>
-          <li>Infers your browser's default referrer policy.</li>
+          <li>Infers your browser's default referrer policy (⚠️ accurate in Chrome, no guarantee in other browsers).</li>
           <li>
             Demoes the policies no-referrer-when-downgrade and
             strict-origin-when-cross-origin.
@@ -46,8 +44,8 @@
         </ul>
       </div>
     </details>
-    <h2>Your browser's default referrer policy</h2>
-    Detected <b>default</b> referrer policy in this browser:
+    <h2>Your browser's default referrer policy (⚠️ accurate in Chrome, no guarantee in other browsers)</h2>
+    Detected <b>default</b> referrer policy:
     <div id="detected-policy" class="async policy">...</div>
     <h2>Pick a referrer policy</h2>
     <div class="btn-group-policy">
@@ -112,26 +110,27 @@
     <h2>Let's embed a cross-origin image</h2>
     <div id="imageWrapper"></div>
     Open DevTools > Open Network Panel > Click on the image request > See the
-    "Referer" field.
+    "referer" field under "Request Headers".
     <footer>
       <p>
         You can see the 
-        <a
-          href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/aBtuQUga1Tk/n4BLwof4DgAJ"
+        <a noreferrer noopener href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/aBtuQUga1Tk/n4BLwof4DgAJ"
           >Chromium intent to implement</a
         >.
       </p>
       <p>
-        Ping <a href="https://twitter.com/maudnals">@maudnals</a>
+        Ping <a noreferrer noopener href="https://twitter.com/maudnals">@maudnals</a>
         for issues / questions with this demo.
       </p>
       <p>
         👩🏻‍💻You can access the code on Glitch:
         <ul>
-          <li><a href="https://glitch.com/edit/#!/site-one">site-one</a></li>
-          <li><a href="https://glitch.com/edit/#!/site-two">site-two</a></li>
+          <li><a noreferrer noopener href="https://glitch.com/edit/#!/site-one">site-one</a></li>
+          <li><a noreferrer noopener href="https://glitch.com/edit/#!/site-two">site-two</a></li>
         </ul>
       </p>
+      "Mars" picture by 
+      <a noreferrer noopener href="https://unsplash.com/@yukato">Yukato</a> on Unsplash.
     </footer>
     <script src="/script.js" defer></script>
   </body>

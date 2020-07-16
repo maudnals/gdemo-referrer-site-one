@@ -2,6 +2,7 @@
 const siteTwo = 'https://site-two-dot-referrer-demo-280711.ey.r.appspot.com'
 const crossOriginHttpsUrl = `${siteTwo}/ref`
 const crossOriginHttpsUrlIframe = `${siteTwo}/ifr`
+const crossOriginHttpsUrlImage = `${siteTwo}/mars.jpg`
 const sameOriginUrl = '/ref'
 const urlsToFetch = [crossOriginHttpsUrl, sameOriginUrl]
 
@@ -89,7 +90,7 @@ function createImage() {
   }
   const newImage = document.createElement('img')
   // new date and time: hack to re-trigger the request
-  newImage.src = `https://i.imgur.com/XArLydn.jpg?dummy=${new Date().getTime()}`
+  newImage.src = `${crossOriginHttpsUrlImage}?dummy=${new Date().getTime()}`
   newImage.id = 'img'
   newImage.width = 60
   imageWrapperEl.appendChild(newImage)
