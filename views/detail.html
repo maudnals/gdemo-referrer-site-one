@@ -15,7 +15,10 @@
       <div>
         🔷What this demo does:
         <ul>
-          <li>Infers your browser's default referrer policy (⚠️ accurate in Chrome, not in all other browsers).</li>
+          <li>
+            Infers your browser's default referrer policy (⚠️ accurate in
+            Chrome, not in all other browsers).
+          </li>
           <li>
             Demoes the policies no-referrer-when-downgrade and
             strict-origin-when-cross-origin.
@@ -32,11 +35,7 @@
             behaviour.
           </li>
           <li>
-            <img
-              src="/chrome-logo-xs.png"
-              alt="chrome logo"
-              width="12"
-            />
+            <img src="/chrome-logo-xs.png" alt="chrome logo" width="12" />
             Are you in Chrome? If so: you can experiment with another
             <b>default referrer policy</b>. Enable the flag at
             <b class="flag">chrome://flags/#reduced-referrer-granularity</b>.
@@ -44,15 +43,14 @@
         </ul>
       </div>
     </details>
-    <h2>Your browser's default referrer policy (⚠️ accurate in Chrome, not in all other browsers)</h2>
+    <h2>
+      Your browser's default referrer policy (⚠️ accurate in Chrome, not in all
+      other browsers)
+    </h2>
     Detected <b>default</b> referrer policy:
     <div id="detected-policy" class="async policy">...</div>
-    <br/>
-    <img
-      src="/chrome-logo-xs.png"
-      alt="chrome logo"
-      width="12"
-    />
+    <br />
+    <img src="/chrome-logo-xs.png" alt="chrome logo" width="12" />
     Are you in Chrome? If so: you can experiment with another
     <b>default referrer policy</b>. Enable the flag at
     <b class="flag">chrome://flags/#reduced-referrer-granularity</b>.
@@ -99,7 +97,6 @@
             <div class="url async" id="same-origin">...</div>
           </td>
         </tr>
-
         <tr>
           <td>
             <div>an HTTP origin</div>
@@ -123,24 +120,29 @@
     "referer" field under "Request Headers".
     <footer>
       <p>
-        You can see the 
-        <a noreferrer noopener href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/aBtuQUga1Tk/n4BLwof4DgAJ"
+        You can see the
+        <a
+          noreferrer
+          noopener
+          href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/aBtuQUga1Tk/n4BLwof4DgAJ"
           >Chromium intent to implement</a
         >.
       </p>
       <p>
-        Ping <a noreferrer noopener href="https://twitter.com/maudnals">@maudnals</a>
+        Ping
+        <a noreferrer noopener href="https://twitter.com/maudnals">@maudnals</a>
         for issues / questions with this demo.
       </p>
-      <p>
+      <!-- <p>
         👩🏻‍💻You can access the code on Glitch:
         <ul>
           <li><a noreferrer noopener href="https://glitch.com/edit/#!/site-one">site-one</a></li>
           <li><a noreferrer noopener href="https://glitch.com/edit/#!/site-two">site-two</a></li>
         </ul>
-      </p>
-      "Mars" picture by 
-      <a noreferrer noopener href="https://unsplash.com/@yukato">Yukato</a> on Unsplash.
+      </p> -->
+      "Mars" picture by
+      <a noreferrer noopener href="https://unsplash.com/@yukato">Yukato</a> on
+      Unsplash.
     </footer>
     <script src="/script.js" defer></script>
   </body>
