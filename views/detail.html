@@ -12,37 +12,40 @@
   </head>
   <body>
     <h1>1️⃣ site-one (Referrer demo)</h1>
-    <div class="text-xs">
-      🔷 What this demo does:
-      <ul>
-        <li>Infers your browser's default referrer policy.</li>
-        <li>
-          Demoes the policies no-referrer-when-downgrade and
-          strict-origin-when-cross-origin.
-        </li>
-      </ul>
-      🔷 How to use it:
-      <ul>
-        <li>
-          Do nothing and observe the behaviour when your browser's
-          <b>default referrer policy</b> is used.
-        </li>
-        <li>
-          Then select another policy with the buttons below and observe the
-          behaviour.
-        </li>
-        <li>
-          <img
-            src="https://cdn.glitch.com/df49adee-d54f-4092-afc3-fbf6b5fe530c%2Fchrome-logo-s.png?1591277377304"
-            alt="chrome logo"
-            width="12"
-          />
-          Are you in Chrome? If so: you can experiment with another
-          <b>default referrer policy</b>. Enable the flag at
-          <b class="flag">chrome://flags/#reduced-referrer-granularity</b>.
-        </li>
-      </ul>
-    </div>
+    <details>
+      <summary>ℹ️About this demo</summary>
+      <div>
+        🔷What this demo does:
+        <ul>
+          <li>Infers your browser's default referrer policy.</li>
+          <li>
+            Demoes the policies no-referrer-when-downgrade and
+            strict-origin-when-cross-origin.
+          </li>
+        </ul>
+        🔷How to use it:
+        <ul>
+          <li>
+            Do nothing and observe the behaviour when your browser's
+            <b>default referrer policy</b> is used.
+          </li>
+          <li>
+            Then select another policy with the buttons below and observe the
+            behaviour.
+          </li>
+          <li>
+            <img
+              src="https://cdn.glitch.com/df49adee-d54f-4092-afc3-fbf6b5fe530c%2Fchrome-logo-s.png?1591277377304"
+              alt="chrome logo"
+              width="12"
+            />
+            Are you in Chrome? If so: you can experiment with another
+            <b>default referrer policy</b>. Enable the flag at
+            <b class="flag">chrome://flags/#reduced-referrer-granularity</b>.
+          </li>
+        </ul>
+      </div>
+    </details>
     <h2>Your browser's default referrer policy</h2>
     Detected <b>default</b> referrer policy in this browser:
     <div id="detected-policy" class="async policy">...</div>
@@ -108,7 +111,8 @@
     <div id="iframeWrapper"></div>
     <h2>Let's embed a cross-origin image</h2>
     <div id="imageWrapper"></div>
-    Check DevTools > network > image request > "referer".
+    Open DevTools > Open Network Panel > Click on the image request > See the
+    "Referer" field.
     <footer>
       <p>
         <a
