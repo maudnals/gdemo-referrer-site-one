@@ -119,7 +119,8 @@ function createImage() {
   // new date and time: hack to re-trigger the request
   newImage.src = `${crossOriginHttpsUrlImage}?dummy=${new Date().getTime()}`
   newImage.id = 'img'
-  newImage.width = 60
+  newImage.width = 70
+  newImage.height = 70
   imageWrapperEl.appendChild(newImage)
 }
 
