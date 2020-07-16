@@ -3,6 +3,7 @@ body {
   margin: 1rem;
   line-height: 1.5em;
   font-size: 14px;
+  max-width: 860px;
   --font-size-s: 0.9rem;
   --font-size-xs: 0.78rem;
   --font-size-xxs: 0.65rem;
@@ -12,13 +13,13 @@ body {
   --color-gray-x-light: #f3f3f3;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                              Links and titles                              */
+/* -------------------------------------------------------------------------- */
+
 a,
 a:visited {
   color: var(--color-primary);
-}
-
-* {
-  outline: none;
 }
 
 h1 {
@@ -33,6 +34,47 @@ h2 {
   box-sizing: border-box;
   margin: 1.8rem 0 0.5rem 0;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                   Layout                                   */
+/* -------------------------------------------------------------------------- */
+
+iframe,
+table,
+h2 {
+  width: 100%;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                         Expandable details section                         */
+/* -------------------------------------------------------------------------- */
+
+details {
+  margin-top: 1rem;
+  background: #e9f0f7;
+  padding: 0.5rem;
+  font-family: 'Lucida Console', Monaco, monospace;
+  font-size: var(--font-size-xs);
+  line-height: 1rem;
+  color: #0d304a;
+}
+
+details > div {
+  margin-top: 1rem;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 800;
+}
+
+summary:focus {
+  outline: none;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    Table                                   */
+/* -------------------------------------------------------------------------- */
 
 table {
   table-layout: fixed;
@@ -58,6 +100,15 @@ td {
   border-bottom: 1px solid var(--color-gray-light);
 }
 
+/* -------------------------------------------------------------------------- */
+/*                              Policy and others                             */
+/* -------------------------------------------------------------------------- */
+
+.flag {
+  user-select: all;
+  cursor: default;
+}
+
 .code {
   font-family: 'Lucida Console', Monaco, monospace;
   background: var(--color-gray-x-light);
@@ -78,14 +129,6 @@ td {
   line-height: 1rem;
 }
 
-footer {
-  margin-top: 6rem;
-  padding: 0.5rem 0;
-  border-top: solid 1px;
-  font-size: 0.8rem;
-  line-height: 1rem;
-}
-
 .policy,
 .url {
   font-family: 'Lucida Console', Monaco, monospace;
@@ -103,10 +146,6 @@ footer {
   display: inline-block;
 }
 
-.async {
-  animation: appear 0.3s ease-in;
-}
-
 .ok {
   color: green;
   background-color: rgba(0, 128, 0, 0.137);
@@ -116,6 +155,23 @@ footer {
   color: red;
   background-color: rgba(255, 0, 0, 0.158);
 }
+
+.async {
+  animation: appear 0.3s ease-in;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Buttons                                  */
+/* -------------------------------------------------------------------------- */
 
 @media only screen and (max-width: 849px) {
   .btn-group-policy {
@@ -140,7 +196,6 @@ footer {
     display: flex;
     flex-direction: row;
     width: 100%;
-    max-width: 860px;
   }
   button {
     flex: 1;
@@ -176,32 +231,22 @@ button.selected {
   color: white;
 }
 
-@keyframes appear {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.flag {
-  user-select: all;
-  cursor: default;
-}
-
-.text-xs {
-  font-size: var(--font-size-xs);
-  line-height: 1rem;
-}
-
-iframe,
-table,
-h2 {
-  width: 100%;
-  max-width: 860px;
-}
+/* -------------------------------------------------------------------------- */
+/*                                   iframe                                   */
+/* -------------------------------------------------------------------------- */
 
 iframe {
   background: var(--color-gray-x-light);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   footer                                   */
+/* -------------------------------------------------------------------------- */
+
+footer {
+  margin-top: 6rem;
+  padding: 0.5rem 0;
+  border-top: solid 1px;
+  font-size: 0.8rem;
+  line-height: 1rem;
 }
