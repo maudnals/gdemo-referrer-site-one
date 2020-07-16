@@ -1,4 +1,7 @@
-// request URLs
+/* -------------------------------------------------------------------------- */
+/*                                Request URLs                                */
+/* -------------------------------------------------------------------------- */
+
 const siteTwo = 'https://site-two-dot-referrer-demo-280711.ey.r.appspot.com'
 const crossOriginHttpsUrl = `${siteTwo}/ref`
 const crossOriginHttpsUrlIframe = `${siteTwo}/ifr`
@@ -6,7 +9,10 @@ const crossOriginHttpsUrlImage = `${siteTwo}/mars.jpg`
 const sameOriginUrl = '/ref'
 const urlsToFetch = [crossOriginHttpsUrl, sameOriginUrl]
 
-// policies
+/* -------------------------------------------------------------------------- */
+/*                                  Policies                                  */
+/* -------------------------------------------------------------------------- */
+
 const nrwd = 'no-referrer-when-downgrade'
 const sowco = 'strict-origin-when-cross-origin'
 const policyIdToName = {
@@ -15,7 +21,10 @@ const policyIdToName = {
   p2: sowco
 }
 
-// DOM elements and mapping
+/* -------------------------------------------------------------------------- */
+/*                          DOM elements and mapping                          */
+/* -------------------------------------------------------------------------- */
+
 const image = document.getElementById('img')
 const head = document.getElementById('head')
 const policyEl = document.getElementById('detected-policy')
@@ -28,6 +37,10 @@ const elementsByUrlMap = {
   [crossOriginHttpsUrl]: requestTypeXEl,
   [sameOriginUrl]: requestTypeSameEl
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                    Main                                    */
+/* -------------------------------------------------------------------------- */
 
 main()
 
@@ -58,7 +71,9 @@ function main() {
   createImage()
 }
 
-// Referrer utils
+/* -------------------------------------------------------------------------- */
+/*                               Referrer utils                               */
+/* -------------------------------------------------------------------------- */
 
 function inferChromeDefaultPolicy(referrer) {
   const origin = window.location.origin
@@ -84,6 +99,18 @@ function switchPolicy(event) {
   window.location.search = searchParams.toString()
 }
 
+async function getAndDisplayAllFetchReferrers(policyId) {
+  urlsToFetch.forEach(async (url) => {
+    const referrerResponse = await fetch(url)
+    const referrer = await referrerResponse.text()
+    displayReferrer(url, referrer, policyId)
+  })
+}
+
+/* -------------------------------------------------------------------------- */
+/*                         Side effects / DOM display                         */
+/* -------------------------------------------------------------------------- */
+
 function createImage() {
   if (image) {
     image.remove()
@@ -94,14 +121,6 @@ function createImage() {
   newImage.id = 'img'
   newImage.width = 60
   imageWrapperEl.appendChild(newImage)
-}
-
-async function getAndDisplayAllFetchReferrers(policyId) {
-  urlsToFetch.forEach(async (url) => {
-    const referrerResponse = await fetch(url)
-    const referrer = await referrerResponse.text()
-    displayReferrer(url, referrer, policyId)
-  })
 }
 
 function createIframe() {
@@ -116,8 +135,6 @@ function createIframe() {
     iframeWrapperEl.appendChild(newIframe)
   }
 }
-
-// Side effects / DOM display
 
 function displayPolicy(policy) {
   policyEl.innerHTML = policy
