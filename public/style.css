@@ -147,8 +147,8 @@ td {
 }
 
 .ok {
-  color: green;
-  background-color: rgba(0, 128, 0, 0.137);
+  color: rgb(102, 102, 102);
+  background-color: rgba(112, 112, 112, 0.137);
 }
 
 .nok {

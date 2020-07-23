@@ -155,9 +155,13 @@ function displayAsLoading() {
 }
 
 function displayReferrer(url, referrer, policyId) {
+  let pathHighlightCssClass = 'ok'
+  if (url === crossOriginHttpsUrl) {
+    pathHighlightCssClass = 'nok'
+  }
   const formattedReferrer = referrer.replace(
     /stuff\/detail\?tag=red&p=p[0-2]{1}/g,
-    `<span class="nok">stuff/detail?tag=red&p=${policyId}</span>`
+    `<span class="${pathHighlightCssClass}">stuff/detail?tag=red&p=${policyId}</span>`
   )
   elementsByUrlMap[url].innerHTML = formattedReferrer
 }
